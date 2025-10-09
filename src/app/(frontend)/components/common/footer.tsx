@@ -4,8 +4,8 @@ import { ChangeColorMode } from './change-color-mode'
 
 export const Footer = () => {
   return (
-    <footer className="w-full bg-foreground text-background py-10 mt-10 px-4">
-      <section className="max-w-screen-xl mx-auto px-4 flex justify-between">
+    <footer className="w-full bg-foreground dark:bg-background dark:border-t  text-background py-10 mt-10 px-4">
+      <section className="max-w-screen-xl mx-auto px-4 flex flex-col md:flex-row justify-between">
         <h2 className="text-2xl font-semibold mb-4">Favor</h2>
         <nav>
           <ul className="flex gap-4  font-light">

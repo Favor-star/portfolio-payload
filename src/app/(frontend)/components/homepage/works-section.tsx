@@ -6,14 +6,14 @@ export const WorksSection = () => {
   return (
     <section className="w-full max-w-screen-xl  mx-auto my-10 px-4  flex flex-col">
       <h2 className="text-2xl font-semibold mb-4"> My works</h2>
-      <article className="w-full aspect-video relative px-2 rounded-md overflow-hidden">
+      <article className="w-full aspect-video relative  border p-2 rounded-md overflow-hidden">
         <Image src={'/hero-abstract.jpg'} alt="Hero image" fill />
-        <div className="absolute bottom-0 left-0 right-0 flex justify-between bg-foreground/50 text-background px-5 py-4">
+        <div className="absolute rounded-sm  bottom-2 left-2 right-2 flex justify-between bg-foreground/50 dark:bg-foreground/20 dark:border dark:border-border text-background dark:text-white px-5 py-4">
           <div>
             <h2 className="text-xl font-bold">Wildlife Conservation Travel</h2>
             <p className="text-sm">NextJS | PostgreSQL | Tailwind </p>
           </div>
-          <div className="">
+          <div>
             <Button variant="ghost" size={'icon-lg'} className="bg-inherit rounded-xs">
               <RiArrowRightLongFill />
             </Button>
