@@ -5,8 +5,8 @@ import { ThemeProvider } from '@/lib/hooks/theme-provider'
 import { Footer } from './components/common/footer'
 
 export const metadata = {
-  description: 'A blank template using Payload in a Next.js app.',
-  title: 'Payload Blank Template',
+  title: 'Favor Eliab · Portfolio',
+  description: "A portfolio website showcasing Favor Eliab's projects, skills, and experiences.",
 }
 
 export default async function RootLayout(props: { readonly children: React.ReactNode }) {
