@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button'
-import { RiArrowLeftLongFill, RiHeart2Fill, RiHeart2Line, RiShare2Fill } from '@remixicon/react'
+import { RiHeart2Line, RiShare2Fill } from '@remixicon/react'
 import React from 'react'
 import { Header } from '../../../components/homepage/header'
 import { Separator } from '@/components/ui/separator'
@@ -31,7 +31,7 @@ export const SingleBlogHero = () => {
         <article className="space-x-4">
           <Button className="rounded-xs dark:bg-white dark:text-background" variant={'secondary'}>
             <RiHeart2Line /> Like
-        </Button>
+          </Button>
           <Button variant={'outline'} className="rounded-xs">
             <RiShare2Fill /> Share
           </Button>

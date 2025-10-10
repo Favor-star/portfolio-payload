@@ -11,7 +11,6 @@ import { useTheme } from 'next-themes'
 export const ChangeColorMode = () => {
   const { setTheme } = useTheme()
   const handleThemeChange = (value: string) => {
-    console.log('value', value)
     setTheme(value)
   }
   return (

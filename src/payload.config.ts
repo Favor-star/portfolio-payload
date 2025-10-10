@@ -9,6 +9,11 @@ import sharp from 'sharp'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
+import { HomeHero } from './globals/home-hero'
+import { Services } from './collections/Services'
+import { Works } from './collections/Works'
+import { BlogCategories } from './collections/BlogCategories'
+import { Blogs } from './collections/Blogs'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -20,7 +25,8 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media],
+  globals: [HomeHero],
+  collections: [Users, Media, Services, Works, BlogCategories, Blogs],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
@@ -31,6 +37,12 @@ export default buildConfig({
       url: process.env.DATABASE_URI || '',
     },
   }),
+  bin: [
+    {
+      scriptPath: path.resolve(dirname, 'seed.ts'),
+      key: 'seed',
+    },
+  ],
   sharp,
   plugins: [
     payloadCloudPlugin(),

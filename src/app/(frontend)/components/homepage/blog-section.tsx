@@ -1,17 +1,33 @@
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
+import { getPayload } from 'payload'
 import React from 'react'
-
-export const BlogSection = () => {
+import config from '@payload-config'
+import { Blog } from '@/payload-types'
+const payload = await getPayload({ config })
+export const BlogSection = async () => {
+  const contents = await payload.find({
+    collection: 'blogs',
+    select: {
+      shortDescription: true,
+      blogTitle: true,
+      category: true,
+    },
+  })
   return (
-    <section className="w-full max-w-screen-xl  mx-auto my-10 px-4  flex flex-col">
-      <h2 className="text-2xl font-semibold mb-4"> Blog</h2>
-      <article className="mx-auto w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-2">
-        <SingleBlog />
-        <SingleBlog />
-        <SingleBlog />
+    <section className="flex flex-col w-full max-w-screen-xl px-4 mx-auto my-10">
+      <h2 className="mb-4 text-2xl font-semibold"> Blog</h2>
+      <article className="grid w-full grid-cols-1 gap-4 px-2 mx-auto md:grid-cols-2 lg:grid-cols-3">
+        {contents.docs.map((blog) => (
+          <SingleBlog
+            key={blog.id}
+            title={blog.blogTitle}
+            description={blog.shortDescription}
+            category={blog.category}
+          />
+        ))}
       </article>
-      <div className="mt-5 mx-auto">
+      <div className="mx-auto mt-5">
         <Button className="rounded-xs" variant={'default'} size={'lg'}>
           View All Posts
         </Button>
@@ -20,19 +36,24 @@ export const BlogSection = () => {
   )
 }
 
-const SingleBlog = () => {
+const SingleBlog: React.FC<{ title: string; description: string; category: Blog['category'] }> = ({
+  title,
+  description,
+  category,
+}) => {
   return (
-    <article className="w-full max-w-sm border border-foreground/30 rounded-md cursor-pointer bg-accent/30 overflow-hidden p-3">
+    <article className="w-full max-w-sm p-3 overflow-hidden border rounded-md cursor-pointer border-foreground/30 bg-accent/30">
       <div className="relative min-h-[200px] w-full overflow-hidden ">
         <Image src={'/hero-abstract.jpg'} alt="Hero image" fill />
+        <p className="absolute inset-0 z-20 flex items-center justify-center w-full h-full p-4 text-xs text-white select-none">
+          {title}
+        </p>
       </div>
       <div className="mt-2">
-        <p className="font-light text-sm my-2">TECH</p>
-        <h2 className="font-medium text-lg"> The outbreak of the AI - the change in every thing</h2>
-        <p className="text-sm line-clamp-2">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim debitis dolore corporis
-          quidem animi nostrum impedit quis delectus corrupti assumenda.
-        </p>
+        {/* @ts-expect-error - The typing of category is off */}
+        <p className="my-2 text-sm font-light">{category[0].categoryName}</p>
+        <h2 className="text-lg font-medium">{title}</h2>
+        <p className="text-sm line-clamp-2">{description}</p>
       </div>
     </article>
   )
